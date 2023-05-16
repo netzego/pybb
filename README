@@ -1,5 +1,22 @@
-An bare bone python project template.
+An bare bone template repository for python.
+
+Rationale
+=========
+
+`pip` syntax hard to remeber.
+`poetry` breaks things.
+`make` is for boomers. 
+
+Make targets
+============
+
+- freeze
+- init
+- install
+- upgrade
+- venv
 
 Resources
+=========
 
 - https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
