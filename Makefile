@@ -1,6 +1,6 @@
 VENV			:= .venv
-PIP_PACKAGES	:= packages.pip
-PIP_LOCKFILE	:= lockfile.pip
+PIP_PACKAGES	:= packages.txt
+PIP_LOCKFILE	:= lockfile.txt
 SYS_PYTHON		!= which --all python | grep -v -F $(VENV)
 PYTHON			:= $(VENV)/bin/python
 PIP				:= $(VENV)/bin/pip
