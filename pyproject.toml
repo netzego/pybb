@@ -1,3 +1,8 @@
 [project]
 name = "pybb"
 version = "0.0.0"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+exclude = ["./.venv"]
