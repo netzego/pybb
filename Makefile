@@ -27,7 +27,11 @@ pip_freeze: | $(VENV)
 pip_upgrade: $(PIP_PACKAGES)
 	@$(PIP) $(PIP_OPTIONS) install -r $< --upgrade
 
-clean:
+clean_caches:
+	@[[ -d ".pytest_cache" ]] && rm -r ".pytest_cache" || :
+	@[[ -d ".ruff_cache" ]] && rm -r ".ruff_cache" || :
+
+clean: clean_caches
 	@[[ -d "$(VENV)" ]] && rm -r $(VENV) || :
 
 distclean: clean
