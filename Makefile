@@ -5,6 +5,8 @@ SYS_PYTHON		!= which --all python | grep -v -F $(VENV)
 PYTHON			:= $(VENV)/bin/python
 PIP				:= $(VENV)/bin/pip
 PIP_OPTIONS		:= --disable-pip-version-check --no-color --isolated
+PYTEST			:= $(VENV)/bin/pytest
+PYTEST_OPTIONS	:= --verbose --doctest-modules
 
 $(VENV):
 	@$(SYS_PYTHON) -m venv $(VENV)
@@ -32,12 +34,16 @@ distclean: clean
 	@[[ -e "$(PIP_PACKAGES)" ]] && rm $(PIP_PACKAGES) || :
 	@[[ -e "$(PIP_LOCKFILE)" ]] && rm $(PIP_LOCKFILE) || :
 
+pytest:
+	$(PYTEST) $(PYTEST_OPTIONS)
+
 init: $(PIP_LOCKFILE)
 venv: $(VENV)
 install: $(PIP_LOCKFILE)
 upgrade: pip_upgrade
 freeze: pip_freeze
 list: pip_list
+test: pytest
 
 .PHONY: \
 	clean \
@@ -49,6 +55,8 @@ list: pip_list
 	pip_freeze \
 	pip_list \
 	pip_upgrade \
+	pytest \
+	test \
 	upgrade \
 	venv
 
