@@ -17,7 +17,7 @@ $(PIP_LOCKFILE): $(PIP_PACKAGES) | $(VENV)
 	@$(PIP) $(PIP_OPTIONS) freeze -r $< > $@
 
 pip_list: | $(VENV)
-	@$(PIP) $(PIP_OPTIONS) list
+	@$(PIP) $(PIP_OPTIONS) list --format=freeze
 
 pip_freeze: | $(VENV)
 	@$(PIP) $(PIP_OPTIONS) freeze -r $(PIP_PACKAGES)
