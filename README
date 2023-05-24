@@ -1,20 +1,5 @@
-A bare bone template repository for python.
-
-Rationale
-=========
-
-`pip` syntax ugly. `poetry` breaks things. `make` is for boomers. 
-
-Make targets
-============
-
-- freeze
-- init
-- install
-- upgrade
-- venv
+A bare bone template repository for python projects.
 
 Resources
-=========
 
 - https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
