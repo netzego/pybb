@@ -6,7 +6,7 @@ PYTHON			:= $(VENV)/bin/python
 PIP				:= $(VENV)/bin/pip
 PIP_OPTIONS		:= --disable-pip-version-check --no-color --isolated
 PYTEST			:= $(VENV)/bin/pytest
-PYTEST_OPTIONS	:= --verbose --doctest-modules
+PYTEST_OPTIONS	:= --verbose --doctest-modules --capture=no
 
 $(VENV):
 	@$(SYS_PYTHON) -m venv $(VENV)
