@@ -6,3 +6,21 @@ version = "0.0.0"
 venvPath = "."
 venv = ".venv"
 exclude = ["./.venv"]
+
+[tool.ruff]
+src = ["src", "tests"]
+select = [
+  "E",  # pycodestyle
+  "F",  # pyflakes
+  "UP", # pyupgrade
+  "I",  # isort
+  "D",  # pydocstyle
+]
+unfixable = ["F401", "F841"]
+
+
+[tool.ruff.isort]
+force-single-line = true
+force-sort-within-sections = true
+# force-to-top               = true
+# multi-line-output          = 3
