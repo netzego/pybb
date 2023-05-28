@@ -1,3 +1,7 @@
+SHELL			:= bash
+.SHELLFLAGS		:= -eu -o pipefail -c
+MAKEFLAGS		+= --warn-undefined-variables
+MAKEFLAGS		+= --no-builtin-rules
 VENV			:= .venv
 PIP_PACKAGES	:= packages.txt
 PIP_LOCKFILE	:= lockfile.txt
