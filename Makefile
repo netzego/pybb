@@ -14,6 +14,7 @@ PYTEST_OPTIONS	:= --verbose --doctest-modules --capture=no
 
 $(VENV):
 	@$(SYS_PYTHON) -m venv $(VENV)
+	@cat $(VENV)/pyvenv.cfg
 
 $(PIP_PACKAGES): | $(VENV)
 	@touch $(PIP_PACKAGES)
