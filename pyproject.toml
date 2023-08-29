@@ -19,8 +19,18 @@ select = [
   "D", # pydocstyle
 ]
 fixable = ["ALL"]
-unfixable = ["F401", "F841"]
-
+unfixable = [
+  "F401",
+  "F841",
+  "D212",
+  "D202",
+  "D205",
+  "D212",
+  "D400",
+  "D415",
+  "D104",
+  "D105",
+]
 
 [tool.ruff.isort]
 force-single-line = true
