@@ -18,6 +18,7 @@ select = [
   "I", # isort
   "D", # pydocstyle
 ]
+fixable = ["ALL"]
 unfixable = ["F401", "F841"]
 
 
