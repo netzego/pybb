@@ -13,11 +13,10 @@ exclude = ["./.venv"]
 [tool.ruff]
 src = ["src", "tests"]
 select = [
-  "E",  # pycodestyle
-  "F",  # pyflakes
-  "UP", # pyupgrade
-  "I",  # isort
-  "D",  # pydocstyle
+  "E", # pycodestyle
+  "F", # pyflakes
+  "I", # isort
+  "D", # pydocstyle
 ]
 unfixable = ["F401", "F841"]
 
