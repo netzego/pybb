@@ -4,7 +4,7 @@ MAKEFLAGS		+= --warn-undefined-variables
 MAKEFLAGS		+= --no-builtin-rules
 PROGNAME		:= pybb
 VENV_DIR		:= .venv
-PIP_PACKAGES	:= requirements.in
+REQ_IN	:= requirements.in
 PIP_LOCKFILE	:= requirements.txt
 SYS_PYTHON		!= which --all python | grep -v -F $(VENV_DIR)
 PYTHON			:= $(VENV_DIR)/bin/python
@@ -17,10 +17,10 @@ $(VENV_DIR):
 	@$(SYS_PYTHON) -m venv $(VENV_DIR)
 	@cat $(VENV_DIR)/pyvenv.cfg
 
-$(PIP_PACKAGES): | $(VENV_DIR)
-	@touch $(PIP_PACKAGES)
+$(REQ_IN): | $(VENV_DIR)
+	@touch $(REQ_IN)
 
-$(PIP_LOCKFILE): $(PIP_PACKAGES) | $(VENV_DIR)
+$(PIP_LOCKFILE): $(REQ_IN) | $(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) install -r $<
 	@$(PIP) $(PIP_OPTIONS) freeze -r $< > $@
 
@@ -28,9 +28,9 @@ pip_list: | $(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) list --format=freeze
 
 pip_freeze: | $(VENV_DIR)
-	@$(PIP) $(PIP_OPTIONS) freeze -r $(PIP_PACKAGES)
+	@$(PIP) $(PIP_OPTIONS) freeze -r $(REQ_IN)
 
-pip_upgrade: $(PIP_PACKAGES)
+pip_upgrade: $(REQ_IN)
 	@$(PIP) $(PIP_OPTIONS) install -r $< --upgrade
 
 clean_caches:
@@ -41,7 +41,7 @@ clean: clean_caches
 	@[[ -d "$(VENV_DIR)" ]] && rm -r $(VENV_DIR) || :
 
 distclean: clean
-	@[[ -e "$(PIP_PACKAGES)" ]] && rm $(PIP_PACKAGES) || :
+	@[[ -e "$(REQ_IN)" ]] && rm $(REQ_IN) || :
 	@[[ -e "$(PIP_LOCKFILE)" ]] && rm $(PIP_LOCKFILE) || :
 
 pytest:
