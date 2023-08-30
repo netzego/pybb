@@ -5,7 +5,7 @@ MAKEFLAGS		+= --no-builtin-rules
 PROGNAME		:= pybb
 VENV_DIR		:= .venv
 REQ_IN	:= requirements.in
-PIP_LOCKFILE	:= requirements.txt
+REQ_TXT	:= requirements.txt
 SYS_PYTHON		!= which --all python | grep -v -F $(VENV_DIR)
 PYTHON			:= $(VENV_DIR)/bin/python
 PIP				:= $(VENV_DIR)/bin/pip
@@ -20,7 +20,7 @@ $(VENV_DIR):
 $(REQ_IN): | $(VENV_DIR)
 	@touch $(REQ_IN)
 
-$(PIP_LOCKFILE): $(REQ_IN) | $(VENV_DIR)
+$(REQ_TXT): $(REQ_IN) | $(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) install -r $<
 	@$(PIP) $(PIP_OPTIONS) freeze -r $< > $@
 
@@ -42,14 +42,14 @@ clean: clean_caches
 
 distclean: clean
 	@[[ -e "$(REQ_IN)" ]] && rm $(REQ_IN) || :
-	@[[ -e "$(PIP_LOCKFILE)" ]] && rm $(PIP_LOCKFILE) || :
+	@[[ -e "$(REQ_TXT)" ]] && rm $(REQ_TXT) || :
 
 pytest:
 	$(PYTEST) $(PYTEST_OPTIONS)
 
-init: $(PIP_LOCKFILE)
+init: $(REQ_TXT)
 venv: $(VENV_DIR)
-install: $(PIP_LOCKFILE)
+install: $(REQ_TXT)
 upgrade: pip_upgrade
 freeze: pip_freeze
 list: pip_list
@@ -70,4 +70,4 @@ test: pytest
 	upgrade \
 	venv
 
-.DEFAULT_GOAL := $(PIP_LOCKFILE)
+.DEFAULT_GOAL := $(REQ_TXT)
