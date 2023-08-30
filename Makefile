@@ -6,6 +6,7 @@ PROGNAME		:= pybb
 VENV_DIR		:= .venv
 REQ_IN			:= requirements.in
 REQ_TXT			:= requirements.txt
+WORKTREE_ROOT   != git rev-parse --show-toplevel 2> /dev/null
 SYS_PYTHON		!= which --all python | grep -v -F $(VENV_DIR)
 PYTHON			:= $(VENV_DIR)/bin/python
 PIP				:= $(VENV_DIR)/bin/pip
