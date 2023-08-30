@@ -2,6 +2,7 @@ SHELL			:= bash
 .SHELLFLAGS		:= -eu -o pipefail -c
 MAKEFLAGS		+= --warn-undefined-variables
 MAKEFLAGS		+= --no-builtin-rules
+PROGNAME		:= pybb
 VENV			:= .venv
 PIP_PACKAGES	:= requirements.in
 PIP_LOCKFILE	:= requirements.txt
