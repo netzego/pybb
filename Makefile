@@ -14,12 +14,12 @@ PIP_OPTIONS		:= --disable-pip-version-check --no-color --isolated
 PYTEST			:= $(VENV_DIR)/bin/pytest
 PYTEST_OPTIONS	:= --verbose --doctest-modules --capture=no
 
+$(REQ_IN):
+	@touch $(REQ_IN)
+
 $(VENV_DIR):
 	@$(SYS_PYTHON) -m venv $(VENV_DIR)
 	@cat $(VENV_DIR)/pyvenv.cfg
-
-$(REQ_IN): | $(VENV_DIR)
-	@touch $(REQ_IN)
 
 $(REQ_TXT): $(REQ_IN) | $(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) install -r $<
