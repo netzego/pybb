@@ -3,31 +3,31 @@ SHELL			:= bash
 MAKEFLAGS		+= --warn-undefined-variables
 MAKEFLAGS		+= --no-builtin-rules
 PROGNAME		:= pybb
-VENV			:= .venv
+VENV_DIR		:= .venv
 PIP_PACKAGES	:= requirements.in
 PIP_LOCKFILE	:= requirements.txt
-SYS_PYTHON		!= which --all python | grep -v -F $(VENV)
-PYTHON			:= $(VENV)/bin/python
-PIP				:= $(VENV)/bin/pip
+SYS_PYTHON		!= which --all python | grep -v -F $(VENV_DIR)
+PYTHON			:= $(VENV_DIR)/bin/python
+PIP				:= $(VENV_DIR)/bin/pip
 PIP_OPTIONS		:= --disable-pip-version-check --no-color --isolated
-PYTEST			:= $(VENV)/bin/pytest
+PYTEST			:= $(VENV_DIR)/bin/pytest
 PYTEST_OPTIONS	:= --verbose --doctest-modules --capture=no
 
-$(VENV):
-	@$(SYS_PYTHON) -m venv $(VENV)
-	@cat $(VENV)/pyvenv.cfg
+$(VENV_DIR):
+	@$(SYS_PYTHON) -m venv $(VENV_DIR)
+	@cat $(VENV_DIR)/pyvenv.cfg
 
-$(PIP_PACKAGES): | $(VENV)
+$(PIP_PACKAGES): | $(VENV_DIR)
 	@touch $(PIP_PACKAGES)
 
-$(PIP_LOCKFILE): $(PIP_PACKAGES) | $(VENV)
+$(PIP_LOCKFILE): $(PIP_PACKAGES) | $(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) install -r $<
 	@$(PIP) $(PIP_OPTIONS) freeze -r $< > $@
 
-pip_list: | $(VENV)
+pip_list: | $(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) list --format=freeze
 
-pip_freeze: | $(VENV)
+pip_freeze: | $(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) freeze -r $(PIP_PACKAGES)
 
 pip_upgrade: $(PIP_PACKAGES)
@@ -38,7 +38,7 @@ clean_caches:
 	@[[ -d ".ruff_cache" ]] && rm -r ".ruff_cache" || :
 
 clean: clean_caches
-	@[[ -d "$(VENV)" ]] && rm -r $(VENV) || :
+	@[[ -d "$(VENV_DIR)" ]] && rm -r $(VENV_DIR) || :
 
 distclean: clean
 	@[[ -e "$(PIP_PACKAGES)" ]] && rm $(PIP_PACKAGES) || :
@@ -48,7 +48,7 @@ pytest:
 	$(PYTEST) $(PYTEST_OPTIONS)
 
 init: $(PIP_LOCKFILE)
-venv: $(VENV)
+venv: $(VENV_DIR)
 install: $(PIP_LOCKFILE)
 upgrade: pip_upgrade
 freeze: pip_freeze
