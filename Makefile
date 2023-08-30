@@ -59,6 +59,8 @@ freeze: pip_freeze
 list: pip_list
 test: pytest
 
+.FORCE:
+
 .PHONY: \
 	clean \
 	distclean \
