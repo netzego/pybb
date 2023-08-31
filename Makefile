@@ -34,7 +34,7 @@ list: |$(VENV_DIR)
 pip_freeze: | $(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) freeze -r $(REQ_IN)
 
-pip_upgrade: $(REQ_IN)
+upgrade: |$(REQ_IN)
 	@$(PIP) $(PIP_OPTIONS) install -r $< --upgrade
 
 clean_caches:
