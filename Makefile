@@ -28,7 +28,7 @@ $(VENV_DIR):
 	@$(SYS_PYTHON) -m venv $(VENV_DIR)
 	@cat $(VENV_DIR)/pyvenv.cfg
 
-pip_list: | $(VENV_DIR)
+list: |$(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) list --format=freeze
 
 pip_freeze: | $(VENV_DIR)
