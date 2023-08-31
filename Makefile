@@ -38,8 +38,7 @@ upgrade: |$(REQ_IN)
 	@$(PIP) $(PIP_OPTIONS) install -r $< --upgrade
 
 clean_caches:
-	@[[ -d ".pytest_cache" ]] && rm -r ".pytest_cache" || :
-	@[[ -d ".ruff_cache" ]] && rm -r ".ruff_cache" || :
+	@fd -I -H "\..*_cache" -x rm -r {}
 
 clean: clean_caches
 	@[[ -d "$(VENV_DIR)" ]] && rm -r $(VENV_DIR) || :
