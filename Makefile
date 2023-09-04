@@ -48,6 +48,7 @@ clean_caches:
 
 clean: clean_caches
 	@[[ -d "$(VENV_DIR)" ]] && rm -r $(VENV_DIR) || :
+	@[[ -d "src/$(PROGNAME).egg-info" ]] && rm -r "src/$(PROGNAME).egg-info" || :
 
 distclean: clean
 	@[[ -e "$(REQ_IN)" ]] && rm $(REQ_IN) || :
