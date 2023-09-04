@@ -28,6 +28,9 @@ $(VENV_DIR):
 	@$(SYS_PYTHON) -m venv $(VENV_DIR)
 	@cat $(VENV_DIR)/pyvenv.cfg
 
+install_packages: $(REQ_IN) |$(VENV_DIR)
+	@$(PIP) $(PIP_OPTIONS) install -r $<
+
 list: |$(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) list --format=freeze
 
@@ -52,7 +55,6 @@ pytest:
 
 init: $(REQ_TXT)
 venv: $(VENV_DIR)
-install: $(REQ_TXT)
 upgrade: pip_upgrade
 freeze: pip_freeze
 list: pip_list
@@ -65,7 +67,7 @@ test: pytest
 	distclean \
 	freeze \
 	init \
-	install \
+	install_packages \
 	list \
 	pip_freeze \
 	pip_list \
