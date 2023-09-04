@@ -37,7 +37,7 @@ src/$(PROGNAME).egg-info: .FORCE
 list: |$(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) list --format=freeze
 
-pip_freeze: | $(VENV_DIR)
+freeze: |$(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) freeze -r $(REQ_IN)
 
 upgrade: |$(REQ_IN)
@@ -59,7 +59,6 @@ pytest:
 init: $(REQ_TXT)
 venv: $(VENV_DIR)
 install_project: src/$(PROGNAME).egg-info
-freeze: pip_freeze
 list: pip_list
 test: pytest
 
