@@ -51,7 +51,6 @@ clean: clean_caches
 	@[[ -d "src/$(PROGNAME).egg-info" ]] && rm -r "src/$(PROGNAME).egg-info" || :
 
 distclean: clean
-	@[[ -e "$(REQ_IN)" ]] && rm $(REQ_IN) || :
 	@[[ -e "$(REQ_TXT)" ]] && rm $(REQ_TXT) || :
 
 pytest:
