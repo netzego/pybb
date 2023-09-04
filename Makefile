@@ -59,7 +59,6 @@ pytest:
 init: $(REQ_TXT)
 venv: $(VENV_DIR)
 install_project: src/$(PROGNAME).egg-info
-upgrade: pip_upgrade
 freeze: pip_freeze
 list: pip_list
 test: pytest
