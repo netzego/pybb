@@ -31,6 +31,9 @@ $(VENV_DIR):
 install_packages: $(REQ_IN) |$(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) install -r $<
 
+src/$(PROGNAME).egg-info: .FORCE
+	@$(PIP) $(PIP_OPTIONS) install --force-reinstall --editable .
+
 list: |$(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) list --format=freeze
 
@@ -55,6 +58,7 @@ pytest:
 
 init: $(REQ_TXT)
 venv: $(VENV_DIR)
+install_project: src/$(PROGNAME).egg-info
 upgrade: pip_upgrade
 freeze: pip_freeze
 list: pip_list
