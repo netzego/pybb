@@ -76,4 +76,4 @@ freeze: $(REQ_TXT)
 	upgrade \
 	venv
 
-.DEFAULT_GOAL := $(REQ_TXT)
+.DEFAULT_GOAL := init
