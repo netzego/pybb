@@ -71,6 +71,7 @@ freeze: $(REQ_TXT)
 	freeze \
 	init \
 	install_packages \
+	install_project \
 	list \
 	test \
 	watch_test \
