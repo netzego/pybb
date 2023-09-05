@@ -59,8 +59,6 @@ test:
 init: $(REQ_TXT)
 venv: $(VENV_DIR)
 install_project: src/$(PROGNAME).egg-info
-list: pip_list
-test: pytest
 
 .FORCE:
 
@@ -71,10 +69,6 @@ test: pytest
 	init \
 	install_packages \
 	list \
-	pip_freeze \
-	pip_list \
-	pip_upgrade \
-	test \
 	test \
 	upgrade \
 	venv
