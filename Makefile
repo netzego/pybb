@@ -53,7 +53,7 @@ clean: clean_caches
 distclean: clean
 	@[[ -e "$(REQ_TXT)" ]] && rm $(REQ_TXT) || :
 
-pytest:
+test:
 	$(PYTEST) $(PYTEST_OPTIONS)
 
 init: $(REQ_TXT)
@@ -74,7 +74,7 @@ test: pytest
 	pip_freeze \
 	pip_list \
 	pip_upgrade \
-	pytest \
+	test \
 	test \
 	upgrade \
 	venv
