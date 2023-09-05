@@ -60,7 +60,7 @@ watch_test:
 	@fd -t f \.py | entr -c $(MAKE) --no-print-directory test
 
 init: $(REQ_TXT)
-venv: $(VENV_DIR)
+venv: |$(VENV_DIR)
 install_project: src/$(PROGNAME).egg-info
 
 .FORCE:
