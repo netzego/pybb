@@ -37,9 +37,6 @@ src/$(PROGNAME).egg-info: .FORCE
 list: |$(VENV_DIR)
 	@$(PIP) $(PIP_OPTIONS) list --format=freeze
 
-freeze: |$(VENV_DIR)
-	@$(PIP) $(PIP_OPTIONS) freeze -r $(REQ_IN)
-
 upgrade: |$(REQ_IN)
 	@$(PIP) $(PIP_OPTIONS) install -r $< --upgrade
 
@@ -63,6 +60,7 @@ venv: |$(VENV_DIR)
 install_project: src/$(PROGNAME).egg-info
 install: install_packages install_project
 init: |$(VENV_DIR) install
+freeze: $(REQ_TXT)
 
 .FORCE:
 
