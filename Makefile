@@ -72,6 +72,7 @@ freeze: $(REQ_TXT)
 	install_packages \
 	list \
 	test \
+	watch_test \
 	upgrade \
 	venv
 
