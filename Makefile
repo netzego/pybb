@@ -51,7 +51,7 @@ distclean: clean
 	@[[ -e "$(REQ_TXT)" ]] && rm $(REQ_TXT) || :
 
 test:
-	$(PYTEST) $(PYTEST_OPTIONS)
+	@$(PYTEST) $(PYTEST_OPTIONS)
 
 watch_test:
 	@fd -t f \.py | entr -c $(MAKE) --no-print-directory test
