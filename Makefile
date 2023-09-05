@@ -66,6 +66,7 @@ freeze: $(REQ_TXT)
 
 .PHONY: \
 	clean \
+	clean_caches \
 	distclean \
 	freeze \
 	init \
