@@ -56,6 +56,10 @@ test:
 watch_test:
 	@fd -t f \.py | entr -c $(MAKE) --no-print-directory test
 
+info:
+	@cat $(VENV_DIR)/pyvenv.cfg
+	@$(MAKE) --no-print-directory list
+
 venv: |$(VENV_DIR)
 install_project: src/$(PROGNAME).egg-info
 install: install_packages install_project
